@@ -1,0 +1,95 @@
+{
+  "test_set": {
+    "seed": 2,
+    "shots_per_kind": 1000
+  },
+  "config": {
+    "disp_window_us": 150000,
+    "ref_from_us": 160000,
+    "ref_to_us": 320000,
+    "hold_from_us": 200000,
+    "hold_to_us": 600000,
+    "disp_thr_mrad": 1.5,
+    "disp_sway_k": 6.0,
+    "sway_thr_mrad": 0.30000001192092896,
+    "onset_k": 4.0,
+    "onset_floor_dps": 0.30000001192092896,
+    "jerk_rate_pm_per_ms": 2.5,
+    "jerk_onset_us": 25000,
+    "flinch_dip_share": 0.5,
+    "wall_pm": 620
+  },
+  "balanced_accuracy": 0.919,
+  "recall": {
+    "GOOD": 0.878,
+    "UNSTEADY": 0.886,
+    "JERK": 0.922,
+    "FLINCH": 0.99
+  },
+  "precision": {
+    "GOOD": 0.8353948620361561,
+    "UNSTEADY": 0.9219562955254943,
+    "JERK": 0.9818956336528222,
+    "FLINCH": 0.9792284866468842
+  },
+  "confusion": {
+    "GOOD": {
+      "GOOD": 878,
+      "UNSTEADY": 61,
+      "JERK": 15,
+      "FLINCH": 19,
+      "DISTURBED": 27
+    },
+    "UNSTEADY": {
+      "GOOD": 101,
+      "UNSTEADY": 886,
+      "JERK": 2,
+      "FLINCH": 2,
+      "DISTURBED": 9
+    },
+    "JERK": {
+      "GOOD": 66,
+      "UNSTEADY": 12,
+      "JERK": 922,
+      "FLINCH": 0,
+      "DISTURBED": 0
+    },
+    "FLINCH": {
+      "GOOD": 6,
+      "UNSTEADY": 2,
+      "JERK": 0,
+      "FLINCH": 990,
+      "DISTURBED": 2
+    }
+  },
+  "movement_error": {
+    "JERK": {
+      "rms_mrad": 1.184159831116314,
+      "p95_mrad": 2.079292529035199,
+      "median_true_mrad": 4.490140212473446
+    },
+    "FLINCH": {
+      "rms_mrad": 0.8817996491538407,
+      "p95_mrad": 1.6327090009093141,
+      "median_true_mrad": 6.804434588878557
+    }
+  },
+  "flinch_onset_error_ms": {
+    "median": -8.007392782233993,
+    "p5": -33.306689948480894,
+    "p95": -2.8936029093293643
+  },
+  "c_vs_reference": {
+    "labels_agree": 4000,
+    "shots": 4000,
+    "max_abs_diff": {
+      "dip_mrad": 2.9054440457976227e-06,
+      "left_mrad": 2.570183343042487e-06,
+      "disp_mrad": 2.7221514411479575e-06,
+      "sway_rms_mrad": 2.250772624279307e-06,
+      "onset_ms": 1.36718749956799e-05,
+      "squeeze_ms": 0.0,
+      "peak_rate_pm_per_ms": 7.629394538355427e-07
+    }
+  }
+}

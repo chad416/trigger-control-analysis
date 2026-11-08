@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python packages
+        run: pip install -r requirements.txt
+      - name: Build, C unit tests, cross-check, evaluation
+        run: PYTHON=python ./scripts/evaluate.sh
+      - name: Test-set accuracy must hold
+        run: |
+          python - <<'PY'
+          import json
+          r = json.load(open("results/eval.json"))
+          print("balanced accuracy", r["balanced_accuracy"])
+          assert r["balanced_accuracy"] >= 0.90, r["balanced_accuracy"]
+          assert r["c_vs_reference"]["labels_agree"] == r["c_vs_reference"]["shots"]
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: results/
